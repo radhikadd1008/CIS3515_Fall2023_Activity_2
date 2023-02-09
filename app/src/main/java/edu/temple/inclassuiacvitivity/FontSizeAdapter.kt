@@ -4,25 +4,39 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.TextView
 
 class FontSizeAdapter(_context : Context, _sizes: Array<Int>) : BaseAdapter() {
     private val context = _context
-    private val sizes = _sizes
+    private val fontSizes = _sizes
 
-    override fun getCount(): Int {
-        TODO("Not yet implemented")
+    override fun getCount() = fontSizes.size
+
+    override fun getItem(position:Int) = fontSizes[position]
+
+    override fun getItemId(position: Int) = position.toLong()
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+       return (getDropDownView(position, convertView, parent)as TextView).apply {
+           textSize = 24f
+       }
     }
 
-    override fun getItem(p0: Int): Any {
-        TODO("Not yet implemented")
-    }
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val textView : TextView
 
-    override fun getItemId(p0: Int): Long {
-        TODO("Not yet implemented")
-    }
+        if(convertView == null) {
+            textView = TextView(context)
+            textView.setPadding(20,20,0,20)
+        } else {
+            textView = convertView as TextView
+        }
 
-    override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        TODO("Not yet implemented")
+        textView.text = fontSizes[position].toString()
+        textView.setPadding(20,20,0,20)
+        textView.textSize = fontSizes[position].toFloat()
+
+        return textView
     }
 
 

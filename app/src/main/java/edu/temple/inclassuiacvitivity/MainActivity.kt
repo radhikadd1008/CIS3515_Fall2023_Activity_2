@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         Log.d("Array Value", "something")
 
         /* Step 2: Create adapter to display items from array in Spinner */
-        spinner.adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, numberArray)
+        //spinner.adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, numberArray)
+        spinner.adapter = FontSizeAdapter(this, numberArray)
 
 
 
